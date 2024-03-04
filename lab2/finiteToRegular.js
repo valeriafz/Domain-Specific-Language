@@ -1,23 +1,22 @@
 // Finite Automaton to Regular Grammar Conversion
 const automatonToRegularGrammar = (automaton) => {
-  let regularGrammar = {};
+  const { states, transitions } = automaton;
+  let grammar = "";
 
-  for (const state of automaton.states) {
-    regularGrammar[state] = {};
+  grammar += "S → " + states.join(" | ") + "\n";
 
-    for (const symbol of automaton.alphabet) {
-      if (automaton.transitions[state][symbol]) {
-        if (!regularGrammar[state][symbol]) {
-          regularGrammar[state][symbol] = [];
-        }
-        regularGrammar[state][symbol].push(
-          automaton.transitions[state][symbol]
-        );
-      }
+  // generate production rules
+  for (const state in transitions) {
+    for (const symbol in transitions[state]) {
+      const nextStates = transitions[state][symbol];
+      const nonTerminal = state + symbol.toUpperCase();
+      grammar +=
+        nonTerminal + " → " + nextStates.map((s) => s + state).join(" | ");
+      grammar += "\n";
     }
   }
 
-  return regularGrammar;
+  return grammar;
 };
 
 module.exports = { automatonToRegularGrammar };

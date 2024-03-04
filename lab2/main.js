@@ -5,13 +5,12 @@ const { convertNDFAtoDFA } = require("./conversion.js");
 const automaton = {
   states: ["q0", "q1", "q2", "q3"],
   alphabet: ["a", "b", "c"],
-  initialState: "q0",
   finalStates: ["q3"],
   transitions: {
-    q0: { a: "q1", b: "q2" },
-    q1: { a: "q3", b: "q2" },
-    q2: { c: "q0", a: "q3" },
-    q3: { c: "q3" },
+    q0: { a: ["q1"], b: ["q2"] },
+    q1: { a: ["q3"], b: ["q2"] },
+    q2: { c: ["q0", "q3"] },
+    q3: { c: ["q3"] },
   },
 };
 

@@ -1,12 +1,18 @@
-// if Finite Automaton is Deterministic or Non-Deterministic
 const isDeterministic = (automaton) => {
-  for (const state of automaton.states) {
-    for (const symbol of automaton.alphabet) {
-      if (Array.isArray(automaton.transitions[state][symbol])) {
+  const { transitions } = automaton;
+
+  for (const state in transitions) {
+    const stateTransitions = transitions[state];
+
+    for (const symbol in stateTransitions) {
+      const nextStates = stateTransitions[symbol];
+
+      if (nextStates.length > 1) {
         return false;
       }
     }
   }
+
   return true;
 };
 
