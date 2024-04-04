@@ -1,4 +1,4 @@
-const FiniteAutomaton = require("../lab1/classFiniteAutomation.js");
+const FiniteAutomaton = require("./classFiniteAutomation.js");
 
 class Grammar {
   VN = ["S", "B", "D"];
