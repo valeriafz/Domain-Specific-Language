@@ -23,3 +23,4 @@ for (let variable in cnfConverter.productions) {
 }
 
 console.log(productionsObj);
+module.exports = productionsObj;
