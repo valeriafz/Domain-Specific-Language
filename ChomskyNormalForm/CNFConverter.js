@@ -41,7 +41,7 @@ class ChomskyNormalForm {
     for (let variable of this.variables) {
       let productions = this.productions[variable];
       let newProductions = [];
-      let encounteredProductions = new Set(); // Track encountered productions
+      let encounteredProductions = new Set();
       for (let production of productions) {
         if (production.length === 1 && this.variables.includes(production)) {
           for (let definition of this.productions[production]) {
@@ -123,7 +123,6 @@ class ChomskyNormalForm {
   }
 
   convertToCNF() {
-    // Eliminate productions with more than 2 variables
     for (let variable in this.productions) {
       let productions = this.productions[variable];
       let newProductions = [];
@@ -142,7 +141,6 @@ class ChomskyNormalForm {
       this.productions[variable] = newProductions;
     }
 
-    // Handle cases where a variable appears with a terminal symbol directly
     for (let variable in this.productions) {
       let productions = this.productions[variable];
       let newProductions = [];
